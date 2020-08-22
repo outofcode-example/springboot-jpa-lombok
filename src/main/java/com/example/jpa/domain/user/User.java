@@ -1,6 +1,7 @@
 package com.example.jpa.domain.user;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +32,7 @@ public class User {
     @Column(name = "contents")
     private String contents;
 
+    @Builder
     public User(String name, String address, Integer age, String contents) {
         this.name = name;
         this.address = address;

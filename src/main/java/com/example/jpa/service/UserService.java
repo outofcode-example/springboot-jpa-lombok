@@ -21,12 +21,12 @@ public class UserService {
 
     @Transactional
     public UserResponseDto create(UserRequestDto request) {
-        User user = new User(
-                request.getName(),
-                request.getAddress(),
-                request.getAge(),
-                request.getContents()
-        );
+        User user = User.builder()
+                .name(request.getName())
+                .address(request.getAddress())
+                .age(request.getAge())
+                .contents(request.getContents())
+                .build();
 
         User saved = repository.save(user);
 
@@ -75,12 +75,12 @@ public class UserService {
         User source = repository
                 .findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 User를 찾을 수 없습니다."));
-        User target = new User(
-                request.getName(),
-                request.getAddress(),
-                request.getAge(),
-                request.getContents()
-        );
+        User target = User.builder()
+                .name(request.getName())
+                .address(request.getAddress())
+                .age(request.getAge())
+                .contents(request.getContents())
+                .build();
         source.update(target);
 
         return UserResponseDto.builder()
